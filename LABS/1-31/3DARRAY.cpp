@@ -95,7 +95,36 @@ public:
 
         return function2Recursive ( sum , ++i );
 
-    }
+    };
+
+    double function3Iterative (){
+
+        double sum = 0;
+        int i = 1;
+
+        for ( ; i <= 500 ; ++i){
+
+            sum += pow ((5 * i),-0.5);
+
+        };
+
+        return sum;
+
+    };
+
+    double function3Recursive ( double sum , int i ){
+
+        sum += pow ((5 * i),-0.5);
+
+        if( i == 500 ){
+
+            return sum;
+
+        };
+
+        return function3Recursive( sum , ++i );
+
+    };
 
 
 
@@ -108,8 +137,10 @@ int main() {
 
     cout << obj.function1Iterative() << endl;
     cout << obj.function2Iterative() << endl;
+    cout << obj.function3Iterative() << endl;
     cout << obj.function1Recursive( 0 , 0 ) << endl;
     cout << obj.function2Recursive( 1 , 1 ) << endl;
+    cout << obj.function3Recursive( 0 , 1 ) << endl;
     
  return 0;   
 };
