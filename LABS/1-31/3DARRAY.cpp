@@ -131,6 +131,21 @@ public:
 
 };
 
+void Fib(int x, int* result) {
+    if (x <= 1) {
+        *result = x; // If x is 0 or 1, the Fibonacci number is x itself.
+        return;
+    }
+
+    int prev = 0, curr = 1;
+    for (int i = 2; i <= x; ++i) {
+        int next = prev + curr; // The next Fibonacci number is the sum of the previous two.
+        prev = curr; // Update prev to be the previous curr.
+        curr = next; // Update curr to be the new Fibonacci number.
+    }
+    *result = curr; // The result pointer is assigned the nth Fibonacci number.
+}
+
 int main() {
 
     Part1 obj;
@@ -141,6 +156,26 @@ int main() {
     cout << obj.function1Recursive( 0 , 0 ) << endl;
     cout << obj.function2Recursive( 1 , 1 ) << endl;
     cout << obj.function3Recursive( 0 , 1 ) << endl;
+
+    int x = 8;
+    int result;
+    Fib(x, &result);
+
     
  return 0;   
 };
+
+/* 
+
+1. ( f_1(n) = 5n^3 + 10n^2 + 600 )
+   - Big O Notation (Upper Bound): ( O(n^3) )
+     - This means that for very large values of ( n ), ( f_1(n) )'s growth rate will not exceed the growth rate of ( n^3 ) times some constant.
+   - Big Omega Notation (Lower Bound): ( Omega(n^3) )
+     - This indicates that for very large values of ( n ), ( f_1(n) )'s growth rate will be at least as fast as ( n^3 ) times some constant.
+
+   - Big O Notation (Upper Bound): ( O(n^3) )
+     - Despite the different coefficients and the presence of lower-degree terms, the ( n^3 ) term is the most significant for large ( n ), so ( f_2(n) )'s growth rate is also bounded above by the growth rate of ( n^3 ) times some constant.
+   - Big Omega Notation (Lower Bound): ( Omega(n^3) )
+     - Similarly, the ( n^3 ) term ensures that ( f_2(n) ) grows at least as quickly as ( n^3 ) times some constant for large ( n ).
+
+In both cases, the justification is that the highest-degree term (which is ( n^3 ) for both functions) will have the most significant impact on the function's value as ( n ) becomes very large, and the lower-degree terms and constant factors become negligible in comparison.*/
